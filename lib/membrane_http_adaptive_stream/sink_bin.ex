@@ -104,6 +104,13 @@ defmodule Membrane.HTTPAdaptiveStream.SinkBin do
 
                 The function will remove all manifests and segments stored during the stream.
                 """
+              ],
+              base_uri: [
+                spec: String.t() | nil,
+                default: nil,
+                description: """
+                A uri that allows for storing full urls in manifests.
+                """
               ]
 
   def_input_pad :input,
@@ -167,7 +174,8 @@ defmodule Membrane.HTTPAdaptiveStream.SinkBin do
           header_naming_fun: opts.header_naming_fun,
           segment_naming_fun: opts.segment_naming_fun,
           partial_naming_fun: opts.partial_naming_fun,
-          mode: opts.mode
+          mode: opts.mode,
+          base_uri: opts.base_uri
         },
         storage: opts.storage,
         cleanup_after: opts.cleanup_after
