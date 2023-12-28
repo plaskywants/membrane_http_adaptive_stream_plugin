@@ -81,6 +81,12 @@ defmodule Membrane.HTTPAdaptiveStream.SinkBin do
                 description:
                   "A function that generates consequent segment names for a given track"
               ],
+              partial_naming_fun: [
+                spec: (Manifest.Track.t(), Keyword.t() -> String.t()),
+                default: &Manifest.Track.default_partial_naming_fun/2,
+                description:
+                  "A function that generates partial names for a given track"
+              ],
               mp4_parameters_in_band?: [
                 spec: boolean(),
                 default: false,
@@ -160,6 +166,7 @@ defmodule Membrane.HTTPAdaptiveStream.SinkBin do
           persist?: opts.persist?,
           header_naming_fun: opts.header_naming_fun,
           segment_naming_fun: opts.segment_naming_fun,
+          partial_naming_fun: opts.partial_naming_fun,
           mode: opts.mode
         },
         storage: opts.storage,
