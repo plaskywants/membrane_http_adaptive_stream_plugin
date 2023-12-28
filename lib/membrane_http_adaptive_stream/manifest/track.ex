@@ -36,7 +36,8 @@ defmodule Membrane.HTTPAdaptiveStream.Manifest.Track do
                   mode: :vod,
                   encoding: [],
                   resolution: nil,
-                  max_framerate: nil
+                  max_framerate: nil,
+                  base_uri: nil
                 ]
 
     @typedoc """
@@ -57,6 +58,7 @@ defmodule Membrane.HTTPAdaptiveStream.Manifest.Track do
     - `encoding` - keyword of strings representing encoding of content_type
     - `resolution` - resolution of video stream
     - `max_framerate` - maximal framerate of video stream
+    - `base_uri` - If using a CDN to store segments, allow for passing a base uri to hls manifest to store urls in files.
     """
     @type encoding_t :: {:audio, String.t()} | {:video, String.t()}
 
@@ -76,7 +78,8 @@ defmodule Membrane.HTTPAdaptiveStream.Manifest.Track do
             mode: :vod | :live,
             encoding: [encoding_t] | [],
             resolution: {non_neg_integer(), non_neg_integer()} | nil,
-            max_framerate: float() | nil
+            max_framerate: float() | nil,
+            base_uri: String.t() | nil
           }
   end
 
