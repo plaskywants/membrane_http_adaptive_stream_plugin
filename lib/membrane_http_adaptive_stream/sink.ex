@@ -41,7 +41,8 @@ defmodule Membrane.HTTPAdaptiveStream.Sink do
             header_naming_fun: (Manifest.Track.t(), counter :: non_neg_integer -> String.t()),
             segment_naming_fun: (Manifest.Track.t() -> String.t()),
             partial_naming_fun: (String.t(), Keyword.t() -> String.t()),
-            persist?: boolean()
+            persist?: boolean(),
+            base_uri: String.t() | nil
           }
 
     defstruct target_window_duration: Membrane.Time.seconds(40),
@@ -49,7 +50,8 @@ defmodule Membrane.HTTPAdaptiveStream.Sink do
               header_naming_fun: &Manifest.Track.default_header_naming_fun/2,
               segment_naming_fun: &Manifest.Track.default_segment_naming_fun/1,
               partial_naming_fun: &Manifest.Track.default_partial_naming_fun/2,
-              persist?: false
+              persist?: false,
+              base_uri: nil
   end
 
   defmodule ManifestConfig do
